@@ -2,9 +2,9 @@ package manager.objects;
 
 public class Tag {
 
-    int id;
-    String tag;
-    String lore;
+    private int id;
+    private String tag;
+    private String lore;
 
     public Tag(int id, String tag, String lore) {
         this.id = id;

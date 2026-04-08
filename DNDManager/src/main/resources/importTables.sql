@@ -38,14 +38,16 @@ CREATE TABLE player_character (
 );
 
 CREATE TABLE reward (
+    nameReward      VARCHAR(30)         NOT NULL,
 	id 				INT 				AUTO_INCREMENT,
     typeReward		VARCHAR(30)			NOT NULL,
-    idPlayer		INT					NOT NULL,
+    idPC		    INT					NOT NULL,
     textDescription	VARCHAR(4000),
     linkRewards 	VARCHAR(200),
     
     PRIMARY KEY (id),
-    FOREIGN KEY (idPlayer) REFERENCES player_character (id) ON DELETE CASCADE
+    UNIQUE KEY (nameReward),
+    FOREIGN KEY (idPC) REFERENCES player_character (id) ON DELETE CASCADE
 );
 
 CREATE TABLE non_player_character (
@@ -71,22 +73,25 @@ CREATE TABLE non_player_character (
 );
 
 CREATE TABLE treasure (
+    nameTreasure    VARCHAR(30)         NOT NULL,
 	id 				INT 				AUTO_INCREMENT,
     typeTreasure	VARCHAR(30)			NOT NULL,
     idNPC      		INT					NOT NULL,
     textDescription	VARCHAR(4000),
+    hasBeenFound    BOOL                NOT NULL,
 
     PRIMARY KEY (id),
+    UNIQUE KEY (nameTreasure),
     FOREIGN KEY (idNPC) REFERENCES non_player_character (id) ON DELETE CASCADE
 );
 
 CREATE TABLE tag_character (
     idTag 			INT,
-    idPlayer        INT,
+    idPC        INT,
 
-    FOREIGN KEY (idPlayer) REFERENCES player_character (id) ON DELETE CASCADE,
+    FOREIGN KEY (idPC) REFERENCES player_character (id) ON DELETE CASCADE,
     FOREIGN KEY (idTag) REFERENCES tag (id) ON DELETE CASCADE,
-    PRIMARY KEY (idTag, idPlayer)
+    PRIMARY KEY (idTag, idPC)
 );
 
 CREATE TABLE tag_npc (

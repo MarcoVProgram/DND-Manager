@@ -123,4 +123,16 @@ public abstract class Character {
     public boolean removeTag(Tag tag) {
         return tags.remove(tag);
     }
+
+    public String listTags() {
+        String info = "";
+
+        if (tags.isEmpty()) return "No Tags exist";
+
+        for  (Tag tag : tags) {
+            info = tag.toString() + "\n";
+        }
+
+        return info;
+    }
 }

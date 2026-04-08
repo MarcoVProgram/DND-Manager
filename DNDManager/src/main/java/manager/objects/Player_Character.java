@@ -4,6 +4,9 @@ import manager.enums.Alignment;
 import manager.enums.Gender;
 import manager.enums.Status;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Player_Character extends Character {
 
     private String pcClass;
@@ -11,6 +14,8 @@ public class Player_Character extends Character {
     private int levels;
     private boolean isMulticlass;
     private String playerName;
+
+    private LinkedList<Reward> assets;
 
     public Player_Character(int id, String first_name, String full_name, String pcClass, String subclass, int levels,
                             boolean isMulticlass, String specie, Gender gender, Alignment alignment, String playerName,
@@ -43,6 +48,10 @@ public class Player_Character extends Character {
 
     public String getPlayerName() {
         return playerName;
+    }
+
+    public List<Reward> getAssets() {
+        return new LinkedList<>(assets);
     }
 
     //Setter
@@ -78,5 +87,13 @@ public class Player_Character extends Character {
 
 
         return info;
+    }
+
+    public boolean giveAsset(Reward reward) {
+        return assets.add(reward);
+    }
+
+    public boolean revokeAsset(Tag tag) {
+        return assets.remove(tag);
     }
 }
