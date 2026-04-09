@@ -16,10 +16,6 @@ CREATE TABLE player_character (
 	id 				INT                     AUTO_INCREMENT,
     first_name 		CHAR(20) 			    NOT NULL,
     full_name 		VARCHAR(50) 		    NOT NULL,
-    class		 	VARCHAR(80)			    NOT NULL,
-    subclass		VARCHAR(80),
-    levels 			TINYINT				    NOT NULL,
-    multiclass		BOOL				    NOT NULL,
     specie			VARCHAR(30) 		    NOT NULL,
     gender			ENUM('M', 'F', 'O')     NOT NULL,
     alignment       ENUM('UA',
@@ -35,6 +31,23 @@ CREATE TABLE player_character (
     
     PRIMARY KEY (id),
     UNIQUE 	KEY (full_name)
+);
+
+CREATE TABLE class (
+    className       VARCHAR(20),
+
+    PRIMARY KEY (className)
+);
+
+CREATE TABLE class_instance (
+	className		VARCHAR(20),
+    idPC			INT,
+    levels			TINYINT,
+    subclass		VARCHAR(30),
+    
+    FOREIGN KEY (idPC) REFERENCES player_character (id) ON DELETE CASCADE,
+	FOREIGN KEY (className) REFERENCES class (className) ON DELETE CASCADE,
+	PRIMARY KEY (className, idPC)
 );
 
 CREATE TABLE reward (

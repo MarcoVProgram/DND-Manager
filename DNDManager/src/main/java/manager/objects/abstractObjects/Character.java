@@ -1,13 +1,9 @@
-package manager.objects;
+package manager.objects.abstractObjects;
 
 import manager.enums.*;
-
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
-public abstract class Character {
+public abstract class Character extends Tagged {
 
     protected int id;
     protected String firstName;
@@ -18,9 +14,8 @@ public abstract class Character {
     protected Status currentStatus;
     protected String notes;
 
-    private HashSet<Tag> tags;
-
     public Character(int id, String firstName, String fullName, String specie, Gender gender, Alignment alignment, Status currentStatus, String notes) {
+        super();
         this.id = id;
         this.firstName = firstName;
         this.fullName = fullName;
@@ -29,8 +24,6 @@ public abstract class Character {
         this.alignment = alignment;
         this.currentStatus = currentStatus;
         this.notes = notes;
-
-        tags = new HashSet<>();
     }
 
     //Getter
@@ -64,18 +57,6 @@ public abstract class Character {
 
     public String getNotes() {
         return notes;
-    }
-
-    public List<Tag> getTags() {
-        return new LinkedList<>(tags);
-    }
-
-    public String showTags() {
-        String tagsOutput = "";
-        for  (Tag tag : tags) {
-            tagsOutput = tagsOutput + tag.toString() + "\n";
-        }
-        return tagsOutput;
     }
 
     //Setter
@@ -113,26 +94,5 @@ public abstract class Character {
     @Override
     public int hashCode() {
         return Objects.hashCode(fullName);
-    }
-
-    //Functionality
-    public boolean addTag(Tag tag) {
-        return tags.add(tag);
-    }
-
-    public boolean removeTag(Tag tag) {
-        return tags.remove(tag);
-    }
-
-    public String listTags() {
-        String info = "";
-
-        if (tags.isEmpty()) return "No Tags exist";
-
-        for  (Tag tag : tags) {
-            info = tag.toString() + "\n";
-        }
-
-        return info;
     }
 }

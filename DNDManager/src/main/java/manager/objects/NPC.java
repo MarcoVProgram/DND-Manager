@@ -3,8 +3,8 @@ package manager.objects;
 import manager.enums.Alignment;
 import manager.enums.Gender;
 import manager.enums.Status;
+import manager.objects.abstractObjects.Character;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +21,8 @@ public class NPC extends Character {
 
         this.challengeRating = challengeRating;
         this.dmName = dmName;
+
+        this.loot = new LinkedList<>();
     }
 
     //Getter
@@ -51,7 +53,7 @@ public class NPC extends Character {
 
         //String Final
         info = String.format("NPC --> [ ID: %d\t|\tFirst Name: %s\t|\tFull Name: %s\t|\tCR: %d\t|\tSpecie: %s\t|\t" +
-                        "Gender: %S\t|\tAlignment: %S\t|\tDM Name: %s\t|\tStatus: %S\t|\tHas Notes: %b\t|\tHas Loot ]",
+                        "Gender: %S\t|\tAlignment: %S\t|\tDM Name: %s\t|\tStatus: %S\t|\tHas Notes: %b\t|\tHas Loot: %b ]",
                 this.id, this.firstName, this.fullName, this.challengeRating, this.specie, this.gender.name(),
                 this.alignment.name(), this.dmName, this.currentStatus.name(), hasNotes, hasLoot);
 

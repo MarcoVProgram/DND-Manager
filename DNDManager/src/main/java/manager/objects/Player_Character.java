@@ -1,49 +1,52 @@
 package manager.objects;
 
 import manager.enums.Alignment;
+import manager.enums.Classes;
 import manager.enums.Gender;
 import manager.enums.Status;
+import manager.objects.abstractObjects.Character;
 
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Player_Character extends Character {
 
-    private String pcClass;
-    private String subclass;
-    private int levels;
-    private boolean isMulticlass;
     private String playerName;
 
-    private LinkedList<Reward> assets;
+    private LinkedHashSet<ClassLevels> levelSpread;
+    private List<Reward> assets;
 
-    public Player_Character(int id, String first_name, String full_name, String pcClass, String subclass, int levels,
-                            boolean isMulticlass, String specie, Gender gender, Alignment alignment, String playerName,
+    public Player_Character(int id, String first_name, String full_name, String specie, Gender gender, Alignment alignment, String playerName,
                             Status currentStatus, String notes) {
         super(id, first_name, full_name, specie, gender, alignment, currentStatus, notes);
 
-        this.pcClass = pcClass;
-        this.subclass = subclass;
-        this.levels = levels;
-        this.isMulticlass = isMulticlass;
         this.playerName = playerName;
+        assets = new LinkedList<>();
+        levelSpread = new LinkedHashSet<>();
+    }
+
+    public Player_Character(int id, String first_name, String full_name, String specie, Gender gender, Alignment alignment, String playerName,
+                            Status currentStatus, String notes, LinkedHashSet<ClassLevels> levelSpread) {
+        super(id, first_name, full_name, specie, gender, alignment, currentStatus, notes);
+
+        this.playerName = playerName;
+        assets = new LinkedList<>();
+        this.levelSpread = levelSpread;
     }
 
     //Getter
-    public String getPcClass() {
-        return pcClass;
+    public LinkedHashSet<ClassLevels> getLevelSpread() {
+        return new LinkedHashSet<>(levelSpread);
     }
 
-    public String getSubclass() {
-        return subclass;
-    }
-
-    public int getLevels() {
-        return levels;
-    }
-
-    public boolean isMulticlass() {
-        return isMulticlass;
+    private ClassLevels getClassInstance(Classes className) {
+        for (ClassLevels classLevels : this.levelSpread) {
+            if (className.equals(classLevels.getClassName())) {
+                return classLevels;
+            }
+        }
+        return null;
     }
 
     public String getPlayerName() {
@@ -55,20 +58,32 @@ public class Player_Character extends Character {
     }
 
     //Setter
-    public void setPcClass(String pcClass) {
-        this.pcClass = pcClass;
+    public void setClasses(ClassLevels classInstance) {
+        this.levelSpread.add(classInstance);
     }
 
-    public void setSubclass(String subclass) {
-        this.subclass = subclass;
+    public void setSubclass(Classes className, String subclass) {
+        for  (ClassLevels classLevels : this.levelSpread) {
+            if (className.equals(classLevels.getClassName())) {
+                classLevels.setSubclass(subclass);
+                break;
+            }
+        }
     }
 
-    public void setLevels(int levels) {
-        this.levels = levels;
+    public void setClassLevels(Classes className, int classLevel) {
+        for (ClassLevels classLevels : this.levelSpread) {
+            if (className.equals(classLevels.getClassName())) {
+                classLevels.setLevel(classLevel);
+            }
+        }
     }
 
-    public void setMulticlass(boolean multiclass) {
-        isMulticlass = multiclass;
+    public void removeClasses(Classes className) {
+        ClassLevels classToRemove = getClassInstance(className);
+        if (classToRemove != null) {
+            this.levelSpread.remove(classToRemove);
+        }
     }
 
     //Overrides
@@ -79,11 +94,17 @@ public class Player_Character extends Character {
         boolean hasNotes = notes != null && !notes.isEmpty();
 
         //String Final
-        info = String.format("NPC --> [ ID: %d\t|\tFirst Name: %s\t|\tFull Name: %s\t|\tClass: %s\t|\tSubclass: %s\t|\t" +
-                        "Levels: %d\t|\tIs Multiclass: %b\t|\tSpecie: %s\t|\tGender: %S\t|\tAlignment: %S\t|\tPlayer: %s\t|\t" +
-                        "Status: %S\t|\tHas Notes: %b ]",
-                this.id, this.firstName, this.fullName, this.pcClass, this.subclass, this.levels, this.isMulticlass, this.specie,
-                this.gender.name(), this.alignment.name(), this.playerName, this.currentStatus.name(), hasNotes);
+        info = String.format("NPC --> [ ID: %d\t|\tFirst Name: %s\t|\tFull Name: %s\t|\tSpecie: %s\t|\tGender: %S" +
+                        "\t|\tAlignment: %S\t|\tPlayer: %s\t|\tStatus: %S\t|\tHas Notes: %b ]",
+                this.id, this.firstName, this.fullName, this.specie, this.gender.name(), this.alignment.name(),
+                this.playerName, this.currentStatus.name(), hasNotes);
+
+        if (levelSpread != null || !levelSpread.isEmpty()) {
+            info += "\n";
+            for (ClassLevels classLevels : this.levelSpread) {
+                info += classLevels.toString();
+            }
+        }
 
 
         return info;
@@ -95,5 +116,17 @@ public class Player_Character extends Character {
 
     public boolean revokeAsset(Tag tag) {
         return assets.remove(tag);
+    }
+
+    public void levelUp(Classes className) {
+        ClassLevels classLevelUp = getClassInstance(className);
+
+        if (classLevelUp != null) {
+            classLevelUp.setLevel(classLevelUp.getLevel() + 1);
+        }
+
+        else {
+            classLevelUp = new ClassLevels(className, 1, "");
+        }
     }
 }

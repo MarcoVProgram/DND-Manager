@@ -1,8 +1,8 @@
-package manager.objects;
+package manager.objects.abstractObjects;
 
 import java.util.Objects;
 
-public abstract class Prize {
+public abstract class Prize extends Tagged {
 
     protected String name;
     protected int id;
@@ -10,6 +10,7 @@ public abstract class Prize {
     protected String description;
 
     public Prize(String name, int id, String type, String description) {
+        super();
         this.name = name;
         this.id = id;
         this.type = type;

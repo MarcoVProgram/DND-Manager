@@ -1,5 +1,7 @@
 package manager.objects;
 
+import manager.objects.abstractObjects.Prize;
+
 public class Treasure extends Prize {
 
     private int idNPC;
@@ -35,7 +37,7 @@ public class Treasure extends Prize {
         boolean hasDesc = description != null && !description.isEmpty();
 
         //String Final
-        info = String.format("Tag --> [ ID: %d\t|\tTag: %s\t|\tID Owner: %d\t|\tHas Description: %b\t|\tHas been found: %b ]",
+        info = String.format("[ Tag: %s\t|\tID: %d\t|\tID Owner: %d\t|\tHas Description: %b\t|\tHas been found: %b ]",
                 this.id, this.type, this.idNPC, hasDesc, this.found);
 
 
