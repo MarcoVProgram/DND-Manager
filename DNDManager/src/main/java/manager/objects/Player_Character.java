@@ -26,15 +26,6 @@ public class Player_Character extends Character {
         levelSpread = new LinkedHashSet<>();
     }
 
-    public Player_Character(int id, String first_name, String full_name, String specie, Gender gender, Alignment alignment, String playerName,
-                            Status currentStatus, String notes, LinkedHashSet<ClassLevels> levelSpread) {
-        super(id, first_name, full_name, specie, gender, alignment, currentStatus, notes);
-
-        this.playerName = playerName;
-        assets = new LinkedList<>();
-        this.levelSpread = levelSpread;
-    }
-
     //Getter
     public LinkedHashSet<ClassLevels> getLevelSpread() {
         return new LinkedHashSet<>(levelSpread);

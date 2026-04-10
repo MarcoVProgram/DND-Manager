@@ -32,16 +32,17 @@ public class MyUtils {
         in.nextLine();
     }
 
-    public static void menuMaker(String title, String[] options, String inputRequest) {
+    public static void menuMaker(String title, String[] options) {
 
         String menu = "\n"+ title + "\n";
 
         for (int i = 0; i < options.length; i++) {
-            menu += i+1 + ". " + options[i] + "\n";
+            if (options[i] != null) {
+                menu += i + 1 + ". " + options[i] + "\n";
+            }
         }
 
         print(menu);
-        printHere(inputRequest);
     }
 
 
