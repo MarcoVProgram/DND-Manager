@@ -42,7 +42,7 @@ CREATE TABLE class (
 CREATE TABLE class_instance (
 	className		VARCHAR(20),
     idPC			INT,
-    levels			TINYINT,
+    levels			TINYINT NOT NULL,
     subclass		VARCHAR(30),
     
     FOREIGN KEY (idPC) REFERENCES player_character (id) ON DELETE CASCADE,

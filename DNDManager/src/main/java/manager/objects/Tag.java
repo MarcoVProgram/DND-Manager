@@ -36,7 +36,7 @@ public class Tag {
         boolean hasLore = lore != null && !lore.isEmpty();
 
         //String Final
-        info = String.format("Tag --> [ ID: %d\t|\tTag: %s\t|\tHas Lore: %b ]",
+        info = String.format("[ Tag: %s\t|\tID: %d\t|\tHas Lore: %b ]",
                 this.id, this.tag, hasLore);
 
 

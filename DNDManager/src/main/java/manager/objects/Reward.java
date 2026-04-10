@@ -37,8 +37,9 @@ public class Reward extends Prize {
         boolean hasDesc = description != null && !description.isEmpty();
 
         //String Final
-        info = String.format("Tag --> [ ID: %d\t|\tTag: %s\t|\tID Owner: %d\t|\tHas Description: %b\t|\tLink: <%s> ]",
-                this.id, this.type, this.idPC, hasDesc, this.link);
+        info = String.format("Treasure --> [ Name: %s\t|\tType: %s\t|\tID: %d\t|\tID Owner: %d\t|\tHas Description: %b\t|\tLink: <%s> ]",
+                this.name, this.type, this.id, this.idPC, hasDesc, this.link);
+
 
 
         return info;

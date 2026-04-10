@@ -48,3 +48,4 @@ public abstract class Prize extends Tagged {
         return Objects.hashCode(name);
     }
 }
+

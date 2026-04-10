@@ -27,6 +27,10 @@ public abstract class Tagged {
         return tagsOutput;
     }
 
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
     //Functionality
     public boolean addTag(Tag tag) {
         return tags.add(tag);
