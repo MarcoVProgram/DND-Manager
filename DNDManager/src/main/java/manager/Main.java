@@ -1618,7 +1618,7 @@ public class Main {
                     int idNPCgive = selectPCByIdentification();
                     int idTrGive = selectRewardByIdentification();
 
-                    SQLAccess.giveRewardPC(idNPCgive, idTrGive);
+                    SQLAccess.giveLootNPC(idNPCgive, idTrGive);
 
                     MyUtils.pause();
                     break;
@@ -1627,7 +1627,7 @@ public class Main {
                     int idNPCtake = selectPCByIdentification();
                     int idTrtake = selectRewardByIdentification();
 
-                    SQLAccess.giveRewardPC(idNPCtake, idTrtake);
+                    SQLAccess.removeLootNPC(idNPCtake, idTrtake);
 
                     MyUtils.pause();
                     break;
