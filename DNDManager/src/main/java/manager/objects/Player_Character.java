@@ -31,6 +31,15 @@ public class Player_Character extends Character {
         return new LinkedHashSet<>(levelSpread);
     }
 
+    public boolean hasClassInstance(Classes className) {
+        for (ClassLevels classLevels : this.levelSpread) {
+            if (className.equals(classLevels.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private ClassLevels getClassInstance(Classes className) {
         for (ClassLevels classLevels : this.levelSpread) {
             if (className.equals(classLevels.getClassName())) {
@@ -38,6 +47,14 @@ public class Player_Character extends Character {
             }
         }
         return null;
+    }
+
+    public int getTotalLevel() {
+        int total = 0;
+        for (ClassLevels classLevels : this.levelSpread) {
+            total += classLevels.getLevel();
+        }
+        return total;
     }
 
     public String getPlayerName() {
@@ -85,7 +102,7 @@ public class Player_Character extends Character {
         boolean hasNotes = notes != null && !notes.isEmpty();
 
         //String Final
-        info = String.format("NPC --> [ ID: %d\t|\tFirst Name: %s\t|\tFull Name: %s\t|\tSpecie: %s\t|\tGender: %S" +
+        info = String.format("PC --> [ ID: %d\t|\tFirst Name: %s\t|\tFull Name: %s\t|\tSpecie: %s\t|\tGender: %S" +
                         "\t|\tAlignment: %S\t|\tPlayer: %s\t|\tStatus: %S\t|\tHas Notes: %b ]",
                 this.id, this.firstName, this.fullName, this.specie, this.gender.name(), this.alignment.name(),
                 this.playerName, this.currentStatus.name(), hasNotes);

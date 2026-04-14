@@ -37,7 +37,7 @@ public class Tag {
 
         //String Final
         info = String.format("[ Tag: %s\t|\tID: %d\t|\tHas Lore: %b ]",
-                this.id, this.tag, hasLore);
+                this.tag, this.id, hasLore);
 
 
         return info;

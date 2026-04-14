@@ -6,7 +6,7 @@ USE myDND;
 CREATE TABLE tag (
 	id 				INT 						AUTO_INCREMENT,
     tag 			VARCHAR(20)                 NOT NULL,
-    lore            VARCHAR(4000),
+    lore            VARCHAR(4100),
     
     PRIMARY KEY (id),
     UNIQUE  KEY (tag)
@@ -55,7 +55,7 @@ CREATE TABLE reward (
 	id 				INT 				AUTO_INCREMENT,
     typeReward		VARCHAR(30)			NOT NULL,
     idPC		    INT					NOT NULL,
-    textDescription	VARCHAR(4000),
+    textDescription	VARCHAR(4100),
     linkRewards 	VARCHAR(200),
     
     PRIMARY KEY (id),
@@ -90,7 +90,7 @@ CREATE TABLE treasure (
 	id 				INT 				AUTO_INCREMENT,
     typeTreasure	VARCHAR(30)			NOT NULL,
     idNPC      		INT					NOT NULL,
-    textDescription	VARCHAR(4000),
+    textDescription	VARCHAR(4100),
     hasBeenFound    BOOL                NOT NULL,
 
     PRIMARY KEY (id),

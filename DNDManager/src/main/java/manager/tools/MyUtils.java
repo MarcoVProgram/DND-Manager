@@ -420,19 +420,19 @@ public class MyUtils {
         return response;
     }
 
-    public static Enum selectEnum(Class enumClass) {
-        Enum[] valuesEnum = (Enum[]) enumClass.getEnumConstants();
-        Enum selection = valuesEnum[0];
+    public static <T extends Enum<T>> T selectEnum(Class<T> enumClass) {
+        T[] valuesEnum = enumClass.getEnumConstants();
+        T selection = valuesEnum[0];
 
         MyUtils.print("\n" + enumClass.getSimpleName() + ":");
-        for (Enum e : valuesEnum) {
+        for (T e : valuesEnum) {
 
             MyUtils.print(e.ordinal() + ". " + e.name());
         }
 
         int index = insertInt("Insert the index of an option", 0);
 
-        for (Enum e : valuesEnum) {
+        for (T e : valuesEnum) {
             if (e.ordinal() == index) {
                 selection = e;
             }
