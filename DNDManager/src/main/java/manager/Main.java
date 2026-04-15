@@ -10,7 +10,6 @@ import manager.objects.abstractObjects.Tagged;
 import manager.tools.MyUtils;
 import manager.tools.Patterns;
 
-import java.awt.*;
 import java.io.*;
 import java.util.List;
 import java.util.Set;
@@ -256,7 +255,7 @@ public class Main {
 
         int id;
 
-        MyUtils.menuMaker("Select how do you want to identify the PC (Type ID -1 if empty)",
+        MyUtils.menuMaker("Select how do you want to identify the PC",
                 options);
 
         int choice = MyUtils.insertValidInt("Choose one of the two options",
